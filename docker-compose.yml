@@ -19,4 +19,3 @@ services:
     container_name: java-debian11
     init: true
     restart: "no"
-
