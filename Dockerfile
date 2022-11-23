@@ -19,6 +19,10 @@ ARG VERSION
 LABEL org.opencontainers.image.authors="github@cisa.dhs.gov"
 LABEL org.opencontainers.image.vendor="Cybersecurity and Infrastructure Security Agency"
 
-RUN apt-get update
-RUN apt-get install -y libfreetype6 default-jdk
-RUN apt-get install -y curl
+RUN apt-get --quiet update \
+    && apt-get install --quiet --assume-yes --no-install-recommends \
+    curl \
+    libfreetype6 \
+    default-jdk \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
